@@ -13,7 +13,8 @@ import com.badlogic.gdx.graphics.Texture;
 public class Circle {
 
 	private Texture t;
-	
+	public float x=0f;
+	public float y=0f;
 	private Beacon red=new Beacon(0,0.719f);
 	private Beacon blue=new Beacon(1f,0.719f);
 	private Beacon green=new Beacon(0.5f,1f);
@@ -22,14 +23,26 @@ public class Circle {
 	private Beacon wait3=new Beacon(0.45f,0.86f);
 	private Beacon wait2=new Beacon(0.45f,0.80f);
 	private Beacon wait1=new Beacon(0.45f,0.74f);
-	
+	private Beacon target;
+	private int count=5;
 	
 	public Circle(){
 		t = randomColor();
 	}
 	
+	private void setTarget(Beacon beacon){
+		target=beacon;
+		x=target.getX();y=target.getY();
+	}
+	
 	public void move(){
-		
+		switch(count){
+			case 5:setTarget(wait4);count--;
+			case 4:setTarget(wait3);count--;
+			case 3:setTarget(wait2);count--;
+			case 2:setTarget(wait1);count--;
+			case 1:x=x-0.01f;y=y-0.01f;
+		}
 	}
 	
 	private Texture randomColor() {

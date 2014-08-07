@@ -7,8 +7,10 @@ public class Beacon {
 	private int h=Gdx.graphics.getHeight();
 	private float x;private float y;
 	
-	
 	public Beacon(float x, float y){
 		this.x=(float)x*w;this.y=(float)y*h;
 	}
+	
+	public float getX(){return x;}
+	public float getY(){return y;}
 }

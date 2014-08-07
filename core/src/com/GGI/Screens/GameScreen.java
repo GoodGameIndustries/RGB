@@ -59,11 +59,13 @@ public class GameScreen implements Screen,InputProcessor{
 		
 		pic.begin();
 		pic.draw(bg,0,0,w,h);
-		pic.draw(circles.get(count+4).getTexture(),(int)(.45*w),(int)(.92*h),(int)(.1*w),(int)(.1*w));
-		pic.draw(circles.get(count+3).getTexture(),(int)(.45*w),(int)(.86*h),(int)(.1*w),(int)(.1*w));
+		Circle circle=circles.get(0);
+		circle.move();
+		pic.draw(circle.getTexture(),(int)circle.x,(int)circle.y,(int)(.1*w),(int)(.1*w));
+		/*pic.draw(circles.get(count+3).getTexture(),(int)(.45*w),(int)(.86*h),(int)(.1*w),(int)(.1*w));
 		pic.draw(circles.get(count+2).getTexture(),(int)(.45*w),(int)(.8*h),(int)(.1*w),(int)(.1*w));
 		pic.draw(circles.get(count+1).getTexture(),(int)(.45*w),(int)(.74*h),(int)(.1*w),(int)(.1*w));
-		pic.draw(circles.get(count).getTexture(),(int)(.45*w),(int)(.5*h),(int)(.1*w),(int)(.1*w));
+		pic.draw(circles.get(count).getTexture(),(int)(.45*w),(int)(.5*h),(int)(.1*w),(int)(.1*w));*/
 		pic.end();
 		
 		
