@@ -59,7 +59,7 @@ public class Circle {
 	
 	public void move(){
 		switch(count){
-<<<<<<< HEAD
+
 			case 5:setPosition(wait4.getX(),wait4.getY());count--;
 			case 4:setPosition(wait3.getX(),wait3.getY());count--;
 			case 3:setPosition(wait2.getX(),wait2.getY());count--;
@@ -68,17 +68,6 @@ public class Circle {
 				setTarget(green);
 				targetMove();
 			}
-=======
-
-			case 5:setTarget(wait4);targetMove(target);count--;
-			case 4:setTarget(wait3);targetMove(target);count--;
-			case 3:setTarget(wait2);targetMove(target);count--;
-			case 2:setTarget(wait1);targetMove(target);count--;
-			case 1://y=y-0.1f;
-				setTarget(red);targetMove(target);
-
-		}
->>>>>>> origin/master
 	}
 	
 	private Texture randomColor() {
