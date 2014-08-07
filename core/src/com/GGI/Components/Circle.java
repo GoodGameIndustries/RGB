@@ -30,7 +30,7 @@ public class Circle {
 		t = randomColor();
 	}
 	
-	private void setTarget(Beacon beacon){
+	public void setTarget(Beacon beacon){
 		target=beacon;
 		x=target.getX();y=target.getY();
 	}
@@ -41,7 +41,7 @@ public class Circle {
 			case 4:setTarget(wait3);count--;
 			case 3:setTarget(wait2);count--;
 			case 2:setTarget(wait1);count--;
-			case 1:x=x-0.01f;y=y-0.01f;
+			case 1:y=y-1f;
 		}
 	}
 	
