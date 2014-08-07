@@ -55,25 +55,20 @@ public class Circle {
 	
 	public void move(){
 		switch(count){
-<<<<<<< HEAD
-			case 5:setTarget(wait4);count--;
-			case 4:setTarget(wait3);count--;
-			case 3:setTarget(wait2);count--;
-			case 2:setTarget(wait1);count--;
-			case 1:y=y-1f;
-=======
+
 			case 5:setTarget(wait4);targetMove(target);count--;
 			case 4:setTarget(wait3);targetMove(target);count--;
 			case 3:setTarget(wait2);targetMove(target);count--;
 			case 2:setTarget(wait1);targetMove(target);count--;
 			case 1://y=y-0.1f;
 				setTarget(red);targetMove(target);
->>>>>>> origin/master
+
 		}
 	}
 	
 	private Texture randomColor() {
-		switch((int)Math.random()*3){
+		int temp = (int)(Math.random()*3);
+		switch(temp){
 		case 0: return new Texture(Gdx.files.internal("RedC.png"));
 		case 1: return new Texture(Gdx.files.internal("BlueC.png"));
 		case 2: return new Texture(Gdx.files.internal("GreenC.png"));
