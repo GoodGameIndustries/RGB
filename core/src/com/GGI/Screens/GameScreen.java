@@ -3,6 +3,9 @@
  */
 package com.GGI.Screens;
 
+import java.util.ArrayList;
+
+import com.GGI.Components.Circle;
 import com.GGI.RGB.RGB;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -23,8 +26,16 @@ public class GameScreen implements Screen{
 	private int w = Gdx.graphics.getWidth();
 	private int h = Gdx.graphics.getHeight();
 	
+	private ArrayList<Circle> circles = new ArrayList<Circle>();
+	
+	private int count = 0;
+	
 	public GameScreen(RGB g){
 		this.g=g;
+		
+		for(int i = 0; i <100; i++){
+			circles.add(new Circle());
+		}
 	}
 	
 	@Override
@@ -34,6 +45,7 @@ public class GameScreen implements Screen{
 		
 		pic.begin();
 		pic.draw(bg,0,0,w,h);
+		pic.draw(circles.get(count).getTexture(),(int)(.45*w),(int)(.5*h),(int)(.1*w),(int)(.1*w));
 		pic.end();
 		
 		
