@@ -31,37 +31,66 @@ public class GameScreen implements Screen,InputProcessor{
 	private int xDown;
 	private int yDown;
 	
-	private ArrayList<Circle> circles = new ArrayList<Circle>();
+	public ArrayList<Circle> circles = new ArrayList<Circle>();
+	
+	
 	
 	private int count = 0;
 	
-	private Beacon red=new Beacon(0,0.719f);
-	private Beacon blue=new Beacon(1f,0.719f);
-	private Beacon green=new Beacon(0.5f,1f);
+	private Beacon red=new Beacon(0f,0.281f);
+	private Beacon blue=new Beacon(1f,0.281f);
+	private Beacon green=new Beacon(0.45f,-.2f);
 	private Beacon center=new Beacon(0.45f,0.5f);
 	private Beacon wait4=new Beacon(0.45f,0.92f);
 	private Beacon wait3=new Beacon(0.45f,0.86f);
 	private Beacon wait2=new Beacon(0.45f,0.80f);
 	private Beacon wait1=new Beacon(0.45f,0.74f);
+	private int spawnRate = 100;
+	
+	
+	public boolean gameOver = false;
 	
 	public GameScreen(RGB g){
 		this.g=g;
 		
-		for(int i = 0; i <100; i++){
-			circles.add(new Circle());
-		}
+		
+			/*Circle circle = new Circle(this);
+			circles.add(circle);
+			circle.setCount(1);*/
+			Circle circle2 = new Circle(this);
+			circles.add(circle2);
+			
+		
+		
+		//circles.get(0).setLocation(wait1);
+		circles.get(0).setLocation(wait4);
+	
 	}
 	
 	@Override
 	public void render(float delta) {
+		if(circles.size()>1){
+			if(Math.abs(circles.get(0).x-circles.get(1).x)<.05f && Math.abs(circles.get(0).y-circles.get(1).y)<.05f){gameOver = true;}
+		}
+		if(gameOver){
+				g.setScreen(new GameOverScreen(g));
+		}
+		
 		Gdx.gl.glClearColor(.1f, .1f, .1f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		System.out.println(count);
+		count++;if(count == spawnRate ){System.out.println("spawn");circles.add(new Circle(this));count=0;
+		if(spawnRate>25){spawnRate--;}
+		}
 		
 		pic.begin();
 		pic.draw(bg,0,0,w,h);
-		Circle circle=circles.get(0);
+		
+		for(int i = 0; i < circles.size();i++){
+		Circle circle=circles.get(i);
 		circle.move();
-		pic.draw(circle.getTexture(),(int)circle.x,(int)circle.y,(int)(.1*w),(int)(.1*w));
+		pic.draw(circle.getTexture(),(int)(circle.x*w),(int)(circle.y*h),(int)(.1*w),(int)(.1*w));
+		}
 		/*pic.draw(circles.get(count+3).getTexture(),(int)(.45*w),(int)(.86*h),(int)(.1*w),(int)(.1*w));
 		pic.draw(circles.get(count+2).getTexture(),(int)(.45*w),(int)(.8*h),(int)(.1*w),(int)(.1*w));
 		pic.draw(circles.get(count+1).getTexture(),(int)(.45*w),(int)(.74*h),(int)(.1*w),(int)(.1*w));
@@ -79,7 +108,7 @@ public class GameScreen implements Screen,InputProcessor{
 
 	@Override
 	public void show() {
-		// TODO Auto-generated method stub
+		 Gdx.input.setInputProcessor(this);
 		
 	}
 
@@ -141,15 +170,18 @@ public class GameScreen implements Screen,InputProcessor{
 		
 		if(difX>difY){
 			if(screenX>xDown){
-				circles.get(count).setTarget(blue);
+				circles.get(0).setTarget(blue);
+				
 			}
 			else{
-				circles.get(count).setTarget(red);
+				circles.get(0).setTarget(red);
 			}
 		}
 		else{
-			circles.get(count).setTarget(green);
+			circles.get(0).setTarget(green);
 		}
+		circles.get(0).setCount(0);
+		circles.get(0).setSpeed(0.1f);
 		return true;
 	}
 

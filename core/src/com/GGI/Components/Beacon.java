@@ -8,7 +8,7 @@ public class Beacon {
 	private float x;private float y;
 	
 	public Beacon(float x, float y){
-		this.x=(float)x*w;this.y=(float)y*h;
+		this.x=(float)x;this.y=(float)y;
 	}
 	
 	public float getX(){return x;}
