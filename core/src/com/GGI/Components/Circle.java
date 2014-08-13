@@ -30,6 +30,7 @@ public class Circle {
 	private GameScreen gs;
 	private float multiplier = 1f;
 	private boolean isThis = false;
+	private int cNum;
 	public Circle(GameScreen gameScreen){
 		t = randomColor();
 		this.gs = gameScreen;
@@ -70,6 +71,7 @@ public class Circle {
 			if(count>1){count--;}
 			else if(target!=center){
 				//gs.circles.add(new Circle(gs));
+				if(target.color!=cNum){gs.gameOver = true;}
 				gs.circles.remove(this);
 			}
 			
@@ -113,8 +115,8 @@ public class Circle {
 	}
 	
 	private Texture randomColor() {
-		int temp = (int)(Math.random()*3);
-		switch(temp){
+		cNum = (int)(Math.random()*3);
+		switch(cNum){
 		case 0: return new Texture(Gdx.files.internal("RedC.png"));
 		case 1: return new Texture(Gdx.files.internal("BlueC.png"));
 		case 2: return new Texture(Gdx.files.internal("GreenC.png"));

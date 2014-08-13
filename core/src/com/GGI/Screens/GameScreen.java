@@ -37,9 +37,9 @@ public class GameScreen implements Screen,InputProcessor{
 	
 	private int count = 0;
 	
-	private Beacon red=new Beacon(0f,0.281f);
-	private Beacon blue=new Beacon(1f,0.281f);
-	private Beacon green=new Beacon(0.45f,-.2f);
+	private Beacon red=new Beacon(0f,0.281f,0);
+	private Beacon blue=new Beacon(1f,0.281f,1);
+	private Beacon green=new Beacon(0.45f,-.2f,2);
 	private Beacon center=new Beacon(0.45f,0.5f);
 	private Beacon wait4=new Beacon(0.45f,0.92f);
 	private Beacon wait3=new Beacon(0.45f,0.86f);
