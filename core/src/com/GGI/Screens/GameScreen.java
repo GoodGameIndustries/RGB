@@ -13,6 +13,7 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 /**
@@ -37,6 +38,8 @@ public class GameScreen implements Screen,InputProcessor{
 	
 	private int count = 0;
 	
+	public int score = 0;
+	
 	private Beacon red=new Beacon(0f,0.281f,0);
 	private Beacon blue=new Beacon(1f,0.281f,1);
 	private Beacon green=new Beacon(0.45f,-.2f,2);
@@ -46,13 +49,14 @@ public class GameScreen implements Screen,InputProcessor{
 	private Beacon wait2=new Beacon(0.45f,0.80f);
 	private Beacon wait1=new Beacon(0.45f,0.74f);
 	private int spawnRate = 100;
+	private BitmapFont fnt = new BitmapFont();
 	
 	
 	public boolean gameOver = false;
 	
 	public GameScreen(RGB g){
 		this.g=g;
-		
+		fnt.setScale(2f);
 		
 			/*Circle circle = new Circle(this);
 			circles.add(circle);
@@ -85,7 +89,7 @@ public class GameScreen implements Screen,InputProcessor{
 		
 		pic.begin();
 		pic.draw(bg,0,0,w,h);
-		
+		fnt.draw(pic, "Score: "+score, (int)(w*.9), (int)(h*.99));
 		for(int i = 0; i < circles.size();i++){
 		Circle circle=circles.get(i);
 		circle.move();
@@ -167,7 +171,7 @@ public class GameScreen implements Screen,InputProcessor{
 		screenY = -screenY;
 		int difX = Math.abs(xDown-screenX);
 		int difY = Math.abs(yDown-screenY);
-		
+		if(circles.size()>0){
 		if(difX>difY){
 			if(screenX>xDown){
 				circles.get(0).setTarget(blue);
@@ -182,6 +186,7 @@ public class GameScreen implements Screen,InputProcessor{
 		}
 		circles.get(0).setCount(0);
 		circles.get(0).setSpeed(0.1f);
+		}
 		return true;
 	}
 

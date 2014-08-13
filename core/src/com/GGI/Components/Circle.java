@@ -72,6 +72,7 @@ public class Circle {
 			else if(target!=center){
 				//gs.circles.add(new Circle(gs));
 				if(target.color!=cNum){gs.gameOver = true;}
+				else{gs.score++;}
 				gs.circles.remove(this);
 			}
 			
