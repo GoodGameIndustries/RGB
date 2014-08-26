@@ -77,12 +77,12 @@ public class GameScreen implements Screen,InputProcessor{
 			if(Math.abs(circles.get(0).x-circles.get(1).x)<.05f && Math.abs(circles.get(0).y-circles.get(1).y)<.05f){gameOver = true;}
 		}
 		if(gameOver){
-				g.setScreen(new GameOverScreen(g));
+				g.setScreen(new GameOverScreen(g,score));
 		}
 		
 		Gdx.gl.glClearColor(.1f, .1f, .1f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		System.out.println(count);
+		//System.out.println(count);
 		count++;if(count == spawnRate ){System.out.println("spawn");circles.add(new Circle(this));count=0;
 		if(spawnRate>25){spawnRate--;}
 		}
@@ -124,13 +124,15 @@ public class GameScreen implements Screen,InputProcessor{
 
 	@Override
 	public void pause() {
-		// TODO Auto-generated method stub
+		System.out.println("Paused");
+		Gdx.input.setInputProcessor(null);
 		
 	}
 
 	@Override
 	public void resume() {
-		// TODO Auto-generated method stub
+		
+		Gdx.input.setInputProcessor(this);
 		
 	}
 
@@ -160,7 +162,7 @@ public class GameScreen implements Screen,InputProcessor{
 
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-		screenY = -screenY;
+		screenY = h-screenY;
 		xDown = screenX;
 		yDown = screenY;
 		return true;
@@ -168,9 +170,14 @@ public class GameScreen implements Screen,InputProcessor{
 
 	@Override
 	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-		screenY = -screenY;
+		screenY = h-screenY; 
 		int difX = Math.abs(xDown-screenX);
 		int difY = Math.abs(yDown-screenY);
+		
+		System.out.println(screenX);
+		System.out.println(screenY);
+		if(screenX<w*.8&&screenY>h*.9){System.out.println("pause");pause();g.setScreen(new PauseScreen(g,this));}
+		else{
 		if(circles.size()>0){
 		if(difX>difY){
 			if(screenX>xDown){
@@ -186,6 +193,7 @@ public class GameScreen implements Screen,InputProcessor{
 		}
 		circles.get(0).setCount(0);
 		circles.get(0).setSpeed(0.1f);
+		}
 		}
 		return true;
 	}

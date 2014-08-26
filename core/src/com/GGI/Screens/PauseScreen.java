@@ -9,30 +9,24 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 /**
  * @author Emmett Deen
  *
  */
-public class GameOverScreen implements Screen, InputProcessor{
-
-	private SpriteBatch pic = new SpriteBatch();
-	private Texture bg = new Texture(Gdx.files.internal("GameOver.png"));
-	private BitmapFont fnt = new BitmapFont();
-	
-	private int w = Gdx.graphics.getWidth();
-	private int h = Gdx.graphics.getHeight();
-	
-	private int score;
+public class PauseScreen implements Screen, InputProcessor {
 	
 	private RGB g;
+	private GameScreen gameScreen;
+	private SpriteBatch pic = new SpriteBatch();
+	private Texture bg = new Texture(Gdx.files.internal("Pause.png"));
+	private int w =Gdx.graphics.getWidth();
+	private int h =Gdx.graphics.getHeight();
 	
-	public GameOverScreen(RGB g,int score) {
-		this.score = score;
+	public PauseScreen(RGB g, GameScreen gameScreen) {
 		this.g=g;
-		fnt.setScale(3f);
+		this.gameScreen=gameScreen;
 	}
 
 	/* (non-Javadoc)
@@ -45,8 +39,9 @@ public class GameOverScreen implements Screen, InputProcessor{
 		
 		pic.begin();
 		pic.draw(bg,0,0,w,h);
-		fnt.draw(pic, "Your score was: "+score, (Gdx.graphics.getWidth()/2)-((fnt.getBounds("Your score was: "+score).width)/2),Gdx.graphics.getHeight() - (Gdx.graphics.getHeight()/2));
 		pic.end();
+
+		
 	}
 
 	/* (non-Javadoc)
@@ -129,7 +124,8 @@ public class GameOverScreen implements Screen, InputProcessor{
 
 	@Override
 	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-		g.setScreen(new OpeningScreen(g));
+		g.setScreen(gameScreen);
+		gameScreen.resume();
 		return true;
 	}
 
