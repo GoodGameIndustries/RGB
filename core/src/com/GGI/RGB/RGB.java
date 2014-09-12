@@ -1,5 +1,6 @@
 package com.GGI.RGB;
 
+import com.GGI.Screens.GGIScreen;
 import com.GGI.Screens.GameScreen;
 import com.GGI.Screens.MainMenuScreen;
 import com.GGI.Screens.OpeningScreen;
@@ -20,7 +21,7 @@ public class RGB extends Game {
 	
 	@Override
 	public void create() {
-		setScreen(new MainMenuScreen(this));
+		setScreen(new GGIScreen(this));
 		
 	}
 

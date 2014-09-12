@@ -6,6 +6,7 @@ package com.GGI.Screens;
 import com.GGI.Components.Button;
 import com.GGI.RGB.RGB;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -17,7 +18,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
  * @author Emmett Deen
  *
  */
-public class MainMenuScreen implements Screen{
+public class MainMenuScreen implements Screen, InputProcessor{
 	private RGB game;
 	private ShapeRenderer shape = new ShapeRenderer();
 	private SpriteBatch pic = new SpriteBatch();
@@ -31,8 +32,12 @@ public class MainMenuScreen implements Screen{
 		logo = new Texture(Gdx.files.internal("Title.png"));
 		
 		play = new Button(new Texture(Gdx.files.internal("Buttons/playUp.png")),new Texture(Gdx.files.internal("Buttons/playDown.png")));
-		play.bounds.x=(float)(w/1000);play.bounds.y=(float)(w/1000);
-		play.position.x=.1f;play.position.y=.1f;
+		play.bounds.x=.2f;play.bounds.y=.2f;
+		play.position.x=.4f;play.position.y=.35f;
+		
+		help = new Button(new Texture(Gdx.files.internal("Buttons/helpUp.png")),new Texture(Gdx.files.internal("Buttons/helpDown.png")));
+		help.bounds.x=.2f;help.bounds.y=.2f;
+		help.position.x=.4f;help.position.y=.15f;
 		
 	}
 	
@@ -53,8 +58,11 @@ public class MainMenuScreen implements Screen{
 		 shape.end();
 		 
 		 pic.begin();
+		 pic.draw(help.current, help.position.x*w, help.position.y*h, help.bounds.x*w,help.bounds.y*w);
+		 pic.draw(play.current, play.position.x*w, play.position.y*h, play.bounds.x*w,play.bounds.y*w);
+		 
 		 pic.draw(logo,w/6,((3*h)/4) - (w/3),(2*w)/3,(2*w)/3);
-		 play.render(pic);
+		 
 		 pic.end();
 		 
 		 
@@ -96,7 +104,7 @@ public class MainMenuScreen implements Screen{
 
 	@Override
 	public void show() {
-		// TODO Auto-generated method stub
+		Gdx.input.setInputProcessor(this);
 		
 	}
 
@@ -122,6 +130,63 @@ public class MainMenuScreen implements Screen{
 	public void dispose() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public boolean keyDown(int keycode) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean keyUp(int keycode) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean keyTyped(char character) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+		screenY = h-screenY;
+		if(play.inXBounds(screenX)&&play.inYBounds(screenY)){play.press();}
+		if(help.inXBounds(screenX)&&help.inYBounds(screenY)){help.press();}
+		System.out.println(screenX + "," + screenY);
+		return true;
+	}
+
+	@Override
+	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+		screenY = h-screenY;
+		
+		play.release();
+		help.release();
+		
+		if(play.inXBounds(screenX)&&play.inYBounds(screenY)){game.setScreen(new OpeningScreen(game));}
+		if(help.inXBounds(screenX)&&help.inYBounds(screenY)){game.setScreen(new InstructionScreen(game));}
+		return true;
+	}
+
+	@Override
+	public boolean touchDragged(int screenX, int screenY, int pointer) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean mouseMoved(int screenX, int screenY) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean scrolled(int amount) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

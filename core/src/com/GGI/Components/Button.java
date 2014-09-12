@@ -53,9 +53,9 @@ public class Button {
 	}
 
 	
-	public void render(SpriteBatch button){
+	public void render(SpriteBatch b){
 		
-		button.draw(current,position.x*w,position.y*h,bounds.width*w,bounds.height*w);
+		b.draw(current,position.x*w,position.y*h,bounds.width*w,bounds.height*w);
 		
 	}
 	
@@ -75,11 +75,13 @@ public class Button {
 	}
 	
 	public boolean inXBounds(int n){
-		return(n>position.x*w && n<(position.x*w)+(bounds.width*w));
+		//System.out.println(position.x*w +"," +((position.x*w)+(bounds.width*w)));
+		return(n>position.x*w && n<(position.x*w)+(bounds.x*w));
 	}
 	
 	public boolean inYBounds(int n){
-		return(n>position.y*h && n<(position.y*h)+(bounds.height*w));
+		//System.out.println(position.y*h +"," +(position.y*h)+(bounds.height*w));
+		return(n>position.y*h && n<(position.y*h)+(bounds.y*w));
 	}
 	
 }

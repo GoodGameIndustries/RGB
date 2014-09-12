@@ -7,32 +7,24 @@ import com.GGI.RGB.RGB;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 /**
  * @author Emmett Deen
  *
  */
-public class GameOverScreen implements Screen, InputProcessor{
+public class InstructionScreen implements Screen,InputProcessor {
 
+	private RGB game;
+	private Texture bg;
 	private SpriteBatch pic = new SpriteBatch();
-	private Texture bg = new Texture(Gdx.files.internal("GameOver.png"));
-	private BitmapFont fnt = new BitmapFont();
+	private int w = Gdx.graphics.getWidth(),h=Gdx.graphics.getHeight();
 	
-	private int w = Gdx.graphics.getWidth();
-	private int h = Gdx.graphics.getHeight();
-	
-	private int score;
-	
-	private RGB g;
-	
-	public GameOverScreen(RGB g,int score) {
-		this.score = score;
-		this.g=g;
-		fnt.setScale(3f);
+	public InstructionScreen(RGB game) {
+		this.game = game;
+		bg=new Texture(Gdx.files.internal("Instructions.png"));
+		
 	}
 
 	/* (non-Javadoc)
@@ -40,12 +32,8 @@ public class GameOverScreen implements Screen, InputProcessor{
 	 */
 	@Override
 	public void render(float delta) {
-		Gdx.gl.glClearColor(.1f, .1f, .1f, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		
 		pic.begin();
-		pic.draw(bg,0,0,w,h);
-		fnt.draw(pic, "Your score was: "+score, (Gdx.graphics.getWidth()/2)-((fnt.getBounds("Your score was: "+score).width)/2),Gdx.graphics.getHeight() - (Gdx.graphics.getHeight()/2));
+		pic.draw(bg, 0,0,w,h);
 		pic.end();
 	}
 
@@ -129,7 +117,7 @@ public class GameOverScreen implements Screen, InputProcessor{
 
 	@Override
 	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-		g.setScreen(new MainMenuScreen(g));
+		game.setScreen(new MainMenuScreen(game));
 		return true;
 	}
 
