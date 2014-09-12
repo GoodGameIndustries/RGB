@@ -89,7 +89,7 @@ public class GameScreen implements Screen,InputProcessor{
 		
 		pic.begin();
 		pic.draw(bg,0,0,w,h);
-		fnt.draw(pic, "Score: "+score, (int)(w*.85), (int)(h*.99));
+		fnt.draw(pic, "Score: "+score, w-(fnt.getBounds("Score: "+score).width)-10, h-(fnt.getBounds("Score: "+score).height)-5);
 		for(int i = 0; i < circles.size();i++){
 		Circle circle=circles.get(i);
 		circle.move();
