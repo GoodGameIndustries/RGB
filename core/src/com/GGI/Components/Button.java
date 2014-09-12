@@ -31,14 +31,14 @@ public class Button {
 	private int w = Gdx.graphics.getWidth();
 	private int h = Gdx.graphics.getHeight();
 	
-	public Button(Texture up, Texture down,int action){
+	public Button(Texture up, Texture down){
 		this.up = up;
 		this.down = down;
 		this.current = this.up;
-		this.action = action;
+		//this.action = action;
 		
 		
-		setPositionAndBounds();
+		//setPositionAndBounds();
 	}
 	
 	private void setPositionAndBounds() {
@@ -53,10 +53,10 @@ public class Button {
 	}
 
 	
-	public void render(){
-		button.begin();
+	public void render(SpriteBatch button){
+		
 		button.draw(current,position.x*w,position.y*h,bounds.width*w,bounds.height*w);
-		button.end();
+		
 	}
 	
 	public void press(){
