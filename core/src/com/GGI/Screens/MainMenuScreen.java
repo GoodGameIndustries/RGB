@@ -23,10 +23,11 @@ public class MainMenuScreen implements Screen, InputProcessor{
 	private ShapeRenderer shape = new ShapeRenderer();
 	private SpriteBatch pic = new SpriteBatch();
 	private int w = Gdx.graphics.getWidth(),h=Gdx.graphics.getHeight();
-	private float r=.01f,g=0,b=0;
+	private float r=1f,g=0,b=0f;
 	private Texture logo;
 	private Button play;
 	private Button help;
+	private int step = 0;
 	public MainMenuScreen(RGB game){
 		this.game=game;
 		logo = new Texture(Gdx.files.internal("Title.png"));
@@ -70,30 +71,28 @@ public class MainMenuScreen implements Screen, InputProcessor{
 	}
 
 	private void alterColor() {
-		if(r>0){
-			r+=.01f;
-		}
-		if(r>1.5f){
-			r=0;
+		if(step<=100){
 			g+=.01f;
 		}
-		if(g>0){
-			g+=.01f;
+		else if(step<200){
+			r-=.01f;
 		}
-		if(g>1.5f){
-			g=0;
+		else if(step<300){
 			b+=.01f;
 		}
-		if(b>0){
-			b+=.01f;
+		else if(step<400){
+			g-=.01f;
 		}
-		if(b>1.5f){
-			b=0;
+		else if(step<500){
 			r+=.01f;
 		}
+		else if(step<600){
+			b-=.01f;
+		}
+		else{step=0;}
 		
 		
-		
+		step++;
 	}
 
 	@Override
