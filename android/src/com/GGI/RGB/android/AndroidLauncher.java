@@ -29,7 +29,7 @@ import com.google.android.gms.ads.AdView;
 
 public class AndroidLauncher extends AndroidApplication {
 
-  private static final String AD_UNIT_ID = "ca-app-pub-4179095773889612/9305602480";
+  private static final String AD_UNIT_ID = "ca-app-pub-4179095773889612/5163959689";
   private static final String GOOGLE_PLAY_URL = "https://play.google.com/store/apps/developer?id=Good+Game+Industries";
   protected AdView adView;
   protected View gameView;
