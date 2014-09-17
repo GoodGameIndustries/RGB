@@ -35,7 +35,7 @@ public class GGIScreen implements Screen{
 		this.g=g;
 		opening = new Texture("Powered.png");
 		pix = new SpriteBatch();
-		
+		g.stats.load();
 		myTimer();
 	}
 

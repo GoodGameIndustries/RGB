@@ -10,6 +10,7 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
@@ -28,8 +29,10 @@ public class MainMenuScreen implements Screen, InputProcessor{
 	private Button play;
 	private Button help;
 	private int step = 0;
+	private BitmapFont fnt = new BitmapFont();
 	public MainMenuScreen(RGB game){
 		this.game=game;
+		fnt.setScale(2f);
 		logo = new Texture(Gdx.files.internal("Title.png"));
 		
 		play = new Button(new Texture(Gdx.files.internal("Buttons/playUp.png")),new Texture(Gdx.files.internal("Buttons/playDown.png")));
@@ -63,7 +66,8 @@ public class MainMenuScreen implements Screen, InputProcessor{
 		 pic.draw(play.current, play.position.x*w, play.position.y*h, play.bounds.x*w,play.bounds.y*w);
 		 
 		 pic.draw(logo,w/6,((3*h)/4) - (w/3),(2*w)/3,(2*w)/3);
-		 
+		 fnt.draw(pic, "Your highscore is: "+game.stats.getHS(), (Gdx.graphics.getWidth()/2)-((fnt.getBounds("Your highscore is: "+game.stats.getHS()).width)/2),Gdx.graphics.getHeight() - ((9*Gdx.graphics.getHeight())/24));
+		 fnt.draw(pic, "You have played: "+game.stats.getGP()+" game(s)", (Gdx.graphics.getWidth()/2)-((fnt.getBounds("You have played: "+game.stats.getGP()+" game(s)").width)/2),Gdx.graphics.getHeight() - (Gdx.graphics.getHeight()/3));
 		 pic.end();
 		 
 		 

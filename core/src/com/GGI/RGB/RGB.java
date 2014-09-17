@@ -1,5 +1,6 @@
 package com.GGI.RGB;
 
+import com.GGI.Components.Stats;
 import com.GGI.Screens.GGIScreen;
 import com.GGI.Screens.GameScreen;
 import com.GGI.Screens.MainMenuScreen;
@@ -12,11 +13,13 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class RGB extends Game {
+	public Stats stats = new Stats();
+	
 	SpriteBatch batch;
 	Texture img;
 	
 	public RGB(){
-		
+		//stats.load();
 	}
 	
 	@Override

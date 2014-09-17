@@ -33,6 +33,11 @@ public class GameOverScreen implements Screen, InputProcessor{
 		this.score = score;
 		this.g=g;
 		fnt.setScale(3f);
+		g.stats.setGP(g.stats.getGP()+1);
+		if(score>g.stats.getHS()){
+			g.stats.setHS(score);
+		}
+		g.stats.save();
 	}
 
 	/* (non-Javadoc)
