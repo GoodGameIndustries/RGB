@@ -11,6 +11,7 @@ import com.GGI.RGB.RGB;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -33,7 +34,7 @@ public class GameScreen implements Screen,InputProcessor{
 	
 	private int xDown;
 	private int yDown;
-	
+	private Sound whoosh = Gdx.audio.newSound(Gdx.files.internal("whoosh.wav"));
 	public ArrayList<Circle> circles = new ArrayList<Circle>();
 	
 	
@@ -204,6 +205,7 @@ public class GameScreen implements Screen,InputProcessor{
 		circles.get(0).setSpeed(0.1f);
 		}
 		}
+		whoosh.play();
 		return true;
 	}
 

@@ -8,6 +8,7 @@ import com.GGI.RGB.RGB;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -30,6 +31,7 @@ public class MainMenuScreen implements Screen, InputProcessor{
 	private Button help;
 	private int step = 0;
 	private BitmapFont fnt = new BitmapFont();
+	
 	public MainMenuScreen(RGB game){
 		this.game=game;
 		fnt.setScale(2f);
