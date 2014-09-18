@@ -16,9 +16,11 @@ public class OpeningScreen implements Screen{
 
 	private RGB g;
 	private int count = 0;
+	private int s;
 	
-	public OpeningScreen(RGB g){
+	public OpeningScreen(RGB g,int s){
 		this.g=g;
+		this.s=s;
 	}
 	
 	@Override
@@ -40,7 +42,7 @@ public class OpeningScreen implements Screen{
 		case 3:Gdx.gl.glClearColor(.1f, .1f, .1f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
-		g.setScreen(new GameScreen(g));
+		g.setScreen(new GameScreen(g,s));
 		break;
 		}
 		

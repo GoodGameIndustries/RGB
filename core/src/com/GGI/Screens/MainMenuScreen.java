@@ -169,7 +169,7 @@ public class MainMenuScreen implements Screen, InputProcessor{
 		play.release();
 		help.release();
 		
-		if(play.inXBounds(screenX)&&play.inYBounds(screenY)){game.setScreen(new OpeningScreen(game));}
+		if(play.inXBounds(screenX)&&play.inYBounds(screenY)){game.setScreen(new LevelSelectScreen(game));}
 		if(help.inXBounds(screenX)&&help.inYBounds(screenY)){game.setScreen(new InstructionScreen(game));}
 		return true;
 	}

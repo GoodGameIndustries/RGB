@@ -25,6 +25,8 @@ public class GameScreen implements Screen,InputProcessor{
 	private RGB g;
 	private SpriteBatch pic = new SpriteBatch();
 	private Texture bg = new Texture(Gdx.files.internal("BG.png"));
+	private Texture light = new Texture(Gdx.files.internal("light.png"));
+	public int[] lights = new int[]{0,0,0};
 	
 	private int w = Gdx.graphics.getWidth();
 	private int h = Gdx.graphics.getHeight();
@@ -40,9 +42,9 @@ public class GameScreen implements Screen,InputProcessor{
 	
 	public int score = 0;
 	
-	private Beacon red=new Beacon(0f,0.281f,0);
-	private Beacon blue=new Beacon(1f,0.281f,1);
-	private Beacon green=new Beacon(0.45f,-.2f,2);
+	public Beacon red=new Beacon(0f,0.281f,0);
+	public Beacon blue=new Beacon(1f,0.281f,1);
+	public Beacon green=new Beacon(0.45f,-.2f,2);
 	private Beacon center=new Beacon(0.45f,0.5f);
 	private Beacon wait4=new Beacon(0.45f,0.92f);
 	private Beacon wait3=new Beacon(0.45f,0.86f);
@@ -54,8 +56,11 @@ public class GameScreen implements Screen,InputProcessor{
 	
 	public boolean gameOver = false;
 	
-	public GameScreen(RGB g){
+	public GameScreen(RGB g,int s){
 		this.g=g;
+		score =s;
+		spawnRate=spawnRate-score;
+		if(spawnRate<25){spawnRate=25;}
 		fnt.setScale(2f);
 		
 			/*Circle circle = new Circle(this);
@@ -95,6 +100,10 @@ public class GameScreen implements Screen,InputProcessor{
 		circle.move();
 		pic.draw(circle.getTexture(),(int)(circle.x*w),(int)(circle.y*h),(int)(.1*w),(int)(.1*w));
 		}
+		if(lights[0]>1){pic.draw(light,-(w/2),0,w,(int) (.75*h));lights[0]--;}
+		if(lights[1]>1){pic.draw(light,0,-(h/2),w,h);lights[1]--;}
+		if(lights[2]>1){pic.draw(light,w/2,0,w,(int) (.75*h));lights[2]--;}
+		
 		/*pic.draw(circles.get(count+3).getTexture(),(int)(.45*w),(int)(.86*h),(int)(.1*w),(int)(.1*w));
 		pic.draw(circles.get(count+2).getTexture(),(int)(.45*w),(int)(.8*h),(int)(.1*w),(int)(.1*w));
 		pic.draw(circles.get(count+1).getTexture(),(int)(.45*w),(int)(.74*h),(int)(.1*w),(int)(.1*w));

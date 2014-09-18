@@ -73,6 +73,9 @@ public class Circle {
 				//gs.circles.add(new Circle(gs));
 				if(target.color!=cNum){gs.gameOver = true;}
 				else{gs.score++;}
+				if(target == gs.red){gs.lights[0]=5;}
+				if(target == gs.green){gs.lights[1] = 5;}
+				if(target == gs.blue){gs.lights[2] = 5;}
 				gs.circles.remove(this);
 			}
 			
